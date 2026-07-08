@@ -5,9 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ZEXI TOOL - SYSTEM CONTROL PANEL</title>
   
-  <!-- Tailwind CSS -->
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-  <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
@@ -85,7 +83,6 @@
 </head>
 <body class="min-h-screen cyber-dark-bg flex flex-col justify-between select-none">
 
-  <!-- LOADING SCREEN (INITIALIZATION) -->
   <div id="loading-screen" class="fixed inset-0 bg-[#07040a] z-[100] flex flex-col items-center justify-center space-y-6">
     <div class="relative w-28 h-28 flex items-center justify-center">
       <div class="absolute inset-0 lock-circle rounded-full"></div>
@@ -97,18 +94,14 @@
     </div>
   </div>
 
-  <!-- 1. NEW CUSTOM SYSTEM LAUNCH POPUP MODAL (WITH YOUR IMAGE) -->
   <div id="system-launch-popup" class="fixed inset-0 bg-black/80 z-[95] hidden flex items-center justify-center px-4 font-mono">
     <div class="glass-panel max-w-sm w-full rounded-3xl border border-orange-500/40 overflow-hidden shadow-[0_0_50px_rgba(249,115,22,0.25)] animate-fade-in-up">
-      <!-- Title Header -->
       <div class="bg-[#150d22] border-b border-orange-500/20 py-3 text-center">
         <h4 class="text-orange-500 font-black text-sm uppercase tracking-widest">SYSTEM LAUNCH</h4>
       </div>
       
-      <!-- Content & Your Image -->
       <div class="p-4 space-y-4">
         <div class="border-2 border-purple-500/30 rounded-2xl overflow-hidden bg-black flex items-center justify-center">
-          <!-- Dynamic Image Loaded From Your Link Box Details -->
           <img src="https://i.postimg.cc/0QHk8fxk/Picsart-26-07-07-21-28-36-053.jpg" alt="System Launch Configuration" class="w-full h-auto object-contain">
         </div>
         
@@ -116,7 +109,6 @@
           Are you sure you want to launch a new group?
         </p>
 
-        <!-- Action Buttons Flow -->
         <div class="grid grid-cols-2 gap-3 pt-1">
           <button onclick="startVideoProcessingSequence()" class="bg-orange-500 hover:bg-orange-400 text-black font-black py-3 rounded-xl text-xs uppercase tracking-wider transition-all active:scale-95 shadow-md shadow-orange-500/10">
             PROCEED
@@ -129,16 +121,13 @@
     </div>
   </div>
 
-  <!-- 2. VIDEO STYLE PROCESSING & LOADING OVERLAYS -->
   <div id="video-processing-overlay" class="fixed inset-0 bg-black/90 z-[99] hidden flex flex-col items-center justify-center space-y-4 font-mono">
     <div class="video-spinner"></div>
     <h3 id="video-processing-status" class="text-white font-black text-sm tracking-widest uppercase animate-pulse">Processing System...</h3>
   </div>
 
-  <!-- 3. ROBOT SYSTEM ACTIVE MESSAGE POPUP -->
   <div id="robot-active-popup" class="fixed inset-0 bg-black/85 z-[96] hidden flex items-center justify-center px-4 font-mono">
     <div class="glass-panel max-w-sm w-full rounded-3xl border border-orange-500/40 p-6 space-y-5 text-center shadow-[0_0_40px_rgba(168,85,247,0.2)] animate-fade-in-up">
-      <!-- Orange Robot Mascot Head Box -->
       <div class="w-20 h-20 mx-auto rounded-full bg-orange-500/10 border-2 border-orange-500 flex items-center justify-center text-orange-500 shadow-[0_0_20px_rgba(249,115,22,0.2)]">
         <i class="fa-solid fa-robot text-4xl animate-bounce"></i>
       </div>
@@ -148,7 +137,6 @@
         <p class="text-gray-300 text-xs leading-relaxed">Please wait! Aapke bots server par successfully activate ho gaye hain.</p>
       </div>
 
-      <!-- Green Timing Label Box -->
       <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-2xl py-3 px-4">
         <p class="text-emerald-400 font-black text-xs uppercase tracking-wider">Kripya 8 ghante (8 Hours) wait karein.</p>
       </div>
@@ -161,10 +149,8 @@
     </div>
   </div>
 
-  <!-- APP MAIN CORE INTERFACE LAYOUT -->
   <div id="app-main-content" class="opacity-0 flex flex-col justify-between min-h-screen">
     
-    <!-- HEADER -->
     <header class="glass-panel sticky top-0 z-50 px-4 py-3.5 flex justify-between items-center border-b border-orange-500/15">
       <div class="flex items-center gap-2.5 cursor-pointer" onclick="handleSecretAdminClick()">
         <div class="w-8 h-8 rounded-lg bg-orange-500/10 border border-orange-500/30 flex items-center justify-center">
@@ -184,18 +170,17 @@
       </div>
     </header>
 
-    <!-- MAIN CORE PANEL WRAPPER -->
     <main class="flex-1 max-w-md w-full mx-auto px-4 pt-5 pb-24">
 
-      <!-- DASHBOARD SYSTEM -->
       <div id="panel-dashboard" class="space-y-4">
+        
         <div class="glass-panel rounded-2xl p-4 flex justify-between items-center text-xs font-mono">
           <div class="space-y-0.5">
             <p class="text-gray-400 text-[10px] uppercase">Account Details</p>
-            <p id="user-display-email" class="text-purple-300 font-bold">user1@gmail.com</p>
+            <p id="user-display-email" class="text-purple-300 font-bold">Please Log In First</p>
           </div>
-          <button onclick="location.reload()" class="bg-red-500/10 hover:bg-red-500/20 border border-red-500/30 text-red-400 px-3 py-1.5 rounded-xl font-bold text-[10px] uppercase flex items-center gap-1">
-            <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+          <button id="auth-action-btn" onclick="handleGoogleAuth()" class="bg-orange-500 hover:bg-orange-600 border border-orange-400 text-black px-3 py-1.5 rounded-xl font-bold text-[10px] uppercase flex items-center gap-1 transition-all">
+            <i class="fa-solid fa-right-to-bracket"></i> Login with Google
           </button>
         </div>
 
@@ -205,19 +190,16 @@
           </div>
 
           <div class="space-y-4">
-            <!-- GUILD UID -->
             <div class="space-y-1">
               <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-wider">Enter Guild UID <span class="text-orange-500">*</span></label>
               <input id="form-guild-id" type="number" placeholder="e.g. 123456789..." oninput="handleGuildUserRotation()" class="w-full cyber-input rounded-xl px-4 py-3 text-xs text-white font-mono">
             </div>
 
-            <!-- PLAYER UID -->
             <div class="space-y-1">
               <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-wider">Enter Player UID <span class="text-orange-500">*</span></label>
               <input id="form-player-id" type="number" placeholder="e.g. 123456789..." class="w-full cyber-input rounded-xl px-4 py-3 text-xs text-white font-mono">
             </div>
 
-            <!-- PLAN SELECTOR -->
             <div class="space-y-1">
               <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-wider">SELECT PLAN</label>
               <div class="relative">
@@ -242,7 +224,6 @@
         </div>
       </div>
 
-      <!-- QR PAYMENTS CHECKOUT PANEL -->
       <div id="panel-checkout" class="glass-panel rounded-2xl p-5 space-y-4 hidden">
         <div class="border-b border-purple-500/10 pb-2 flex justify-between items-center">
           <h3 class="text-white font-black text-sm uppercase tracking-wide font-mono">Secure Payment</h3>
@@ -272,7 +253,6 @@
         </div>
       </div>
 
-      <!-- WAITING ON APPROVAL INTERFACE -->
       <div id="panel-timer-lock" class="glass-panel rounded-2xl p-6 text-center space-y-6 hidden border border-orange-500/30">
         <div class="relative w-20 h-20 mx-auto flex items-center justify-center">
           <div class="absolute inset-0 border-4 border-orange-500/10 border-t-orange-500 rounded-full animate-spin"></div>
@@ -288,20 +268,14 @@
         </div>
       </div>
 
-      <!-- FINAL HIGH-QUALITY CONGRATULATIONS DASHBOARD (UNCHANGED EXCELLENCE) -->
       <div id="panel-success" class="glass-panel rounded-3xl p-0 overflow-hidden hidden border-2 success-glow-card">
-        
-        <!-- Top Banner Bar -->
         <div class="bg-[#130a24] border-b border-purple-500/20 py-3.5 px-4 flex justify-center items-center gap-2">
           <i class="fa-solid fa-trophy text-yellow-400 text-sm animate-bounce"></i>
           <h2 class="text-white font-black tracking-widest text-sm uppercase font-mono">CONGRATULATIONS</h2>
           <i class="fa-solid fa-trophy text-yellow-400 text-sm animate-bounce"></i>
         </div>
 
-        <!-- Main Dashboard Body Box Details -->
         <div class="p-5 space-y-5 bg-gradient-to-b from-[#160c2b] to-[#0a0614]">
-          
-          <!-- Profile Badge Grid Segment -->
           <div class="flex items-center gap-4 bg-black/30 border border-purple-500/10 p-3.5 rounded-2xl">
             <div class="w-14 h-14 bg-purple-500/10 border-2 border-purple-500/40 rounded-xl flex items-center justify-center relative shadow-[0_0_15px_rgba(168,85,247,0.15)]">
               <i class="fa-solid fa-shield-halved text-purple-400 text-2xl animate-pulse"></i>
@@ -316,7 +290,6 @@
             </div>
           </div>
 
-          <!-- Parameters Block Layout -->
           <div class="grid grid-cols-2 gap-3 font-mono text-xs">
             <div class="bg-black/40 border border-purple-500/10 p-3 rounded-xl">
               <p class="text-gray-400 text-[9px] uppercase tracking-wider mb-0.5">GUILD ID</p>
@@ -338,453 +311,196 @@
             </div>
           </div>
 
-          <!-- Bot Real-Time Monitoring Grid -->
           <div class="bg-[#0e081c] border border-orange-500/20 p-4 rounded-2xl flex justify-between items-center font-mono">
             <div class="space-y-1">
               <span class="text-[9px] text-gray-400 block uppercase tracking-widest">Bot Processing Matrix</span>
               <div class="text-xs font-black text-white flex items-center gap-1.5">
-                <i class="fa-solid fa-circle-play text-emerald-400 text-[10px] animate-pulse"></i> STATUS: <span class="text-emerald-400">RUNNING</span>
-              </div>
-            </div>
-            <button class="bg-orange-500 text-black font-black text-[10px] px-4 py-2.5 rounded-xl uppercase tracking-wider shadow-[0_0_15px_rgba(249,115,22,0.3)]">
-              <i class="fa-solid fa-list-check mr-1"></i> Details
-            </button>
-          </div>
-
-          <!-- YouTube Promotion Hook -->
-          <div class="bg-purple-950/20 border border-purple-500/20 rounded-2xl p-4 text-center space-y-3">
-            <p class="text-yellow-400 text-[10px] font-black uppercase tracking-widest animate-pulse">Subscribe Channel to Keep Glory Matrix Active!</p>
-            <a href="https://youtube.com/@firezexiyt?si=Xew7xRP9nq95u8oY" target="_blank" class="w-full bg-red-600 hover:bg-red-500 text-white font-black py-3.5 rounded-xl text-xs uppercase block tracking-widest shadow-lg shadow-red-600/20"><i class="fa-brands fa-youtube mr-1.5"></i> SUBSCRIBE NOW</a>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- AUXILIARY TABS (HISTORY/SUPPORT/ORDERS) -->
-      <div id="panel-history" class="glass-panel rounded-2xl p-5 space-y-4 hidden">
-        <h3 class="text-white font-black text-sm uppercase tracking-wide font-mono border-b border-purple-500/10 pb-2">Transaction History</h3>
-        <div id="history-list" class="space-y-3 font-mono text-xs">
-          <p class="text-gray-400 text-center py-6">No previous deployment logs found.</p>
-        </div>
-      </div>
-
-      <div id="panel-support" class="glass-panel rounded-2xl p-5 space-y-4 hidden border border-purple-500/40">
-        <div class="text-center py-2 bg-purple-500/10 rounded-xl border border-purple-500/30">
-          <h3 class="text-orange-400 font-black text-xs uppercase tracking-wider font-mono">Help Support Channel</h3>
-          <p class="text-[10px] text-gray-300 font-bold uppercase mt-0.5">Join Now & Problem Solved</p>
-        </div>
-        <div class="space-y-3">
-          <a href="https://whatsapp.com/channel/0029Vb6cxpWHVvTY8ZY5yy45" target="_blank" class="w-full bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-500/40 text-emerald-400 py-3.5 px-4 rounded-xl font-bold flex items-center justify-between transition-all">
-            <span><i class="fa-brands fa-whatsapp mr-2 text-base"></i> Join WhatsApp Channel</span>
-            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
-          </a>
-          <a href="https://t.me/zexistey" target="_blank" class="w-full bg-sky-600/20 hover:bg-sky-600/30 border border-sky-500/40 text-sky-400 py-3.5 px-4 rounded-xl font-bold flex items-center justify-between transition-all">
-            <span><i class="fa-brands fa-telegram mr-2 text-base"></i> Join Telegram Channel</span>
-            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
-          </a>
-        </div>
-      </div>
-
-      <div id="panel-orders" class="glass-panel rounded-2xl p-5 space-y-4 hidden">
-        <h3 class="text-white font-black text-sm uppercase tracking-wide font-mono border-b border-purple-500/10 pb-2">Active Bot Matrix</h3>
-        <div id="orders-content" class="font-mono text-xs space-y-3">
-          <div class="bg-black/40 border border-purple-500/10 p-4 rounded-xl text-center text-gray-400">
-            No premium configurations deployed at the moment.
-          </div>
-        </div>
-      </div>
-
-      <!-- ADMIN TERMINAL CONTROL ENVIRONMENT -->
-      <div id="secret-admin-modal" class="fixed inset-0 bg-black/95 z-[90] hidden p-5 flex flex-col justify-between overflow-y-auto font-mono text-xs">
-        <div class="space-y-5">
-          <div class="flex justify-between items-center border-b border-red-500/30 pb-3">
-            <span class="text-red-500 font-black tracking-widest text-sm"><i class="fa-solid fa-user-shield"></i> ZEXI CENTRAL ADMIN CONTROL</span>
-            <button onclick="closeAdminPanelEngine()" class="text-gray-400 hover:text-white font-bold">CLOSE [X]</button>
-          </div>
-
-          <div class="space-y-2 bg-[#120b1c] p-4 rounded-xl border border-purple-500/20">
-            <p class="text-orange-400 font-bold uppercase tracking-wider text-[10px]">Pending Verification Requests</p>
-            <div id="admin-pending-box" class="space-y-3 pt-1">
-              <p class="text-gray-500 text-center py-2">No UTR requests in queue.</p>
-            </div>
-          </div>
-
-          <div class="space-y-3 bg-[#120b1c] p-4 rounded-xl border border-orange-500/30">
-            <p class="text-emerald-400 font-bold uppercase tracking-wider text-[10px]">User Control Terminal</p>
-            <div class="p-3 bg-black/60 border border-purple-500/20 rounded-xl space-y-3">
-              <div class="flex justify-between items-start border-b border-purple-500/10 pb-2">
-                <div>
-                  <p id="admin-target-user-display" class="text-white font-bold">user1@gmail.com</p>
-                  <p id="admin-current-status-lbl" class="text-emerald-400 text-[10px] uppercase font-black mt-0.5">Status: Uplinked (Active)</p>
-                </div>
-                <div class="text-right">
-                  <span class="text-[9px] text-gray-400 block uppercase">Current Cash</span>
-                  <span id="admin-user-balance-lbl" class="text-orange-400 font-black text-sm">₹0</span>
-                </div>
-              </div>
-              <div class="grid grid-cols-1 gap-2">
-                <button onclick="triggerInLineAddBalance()" class="w-full bg-emerald-500 hover:bg-emerald-400 text-black font-black py-2 rounded-lg text-[10px] uppercase flex items-center justify-center gap-1">
-                  <i class="fa-solid fa-circle-dollar-to-slot"></i> Add Balance
-                </button>
-                <div class="grid grid-cols-2 gap-2">
-                  <button onclick="toggleBanUserEngine()" class="bg-yellow-600 hover:bg-yellow-500 text-black py-2 rounded-lg font-bold text-[10px] uppercase">Ban Account</button>
-                  <button onclick="deleteAccountEngine()" class="bg-red-600 hover:bg-red-500 text-white py-2 rounded-lg font-bold text-[10px] uppercase">Delete Session</button>
-                </div>
+                <i class="fa-solid fa-circle-play text-emerald-400 text-[10px]"></i> ACTIVE
               </div>
             </div>
           </div>
         </div>
       </div>
-
     </main>
-
-    <!-- FOOTER NAV BAR TABS -->
-    <nav class="glass-panel fixed bottom-0 left-0 right-0 max-w-md mx-auto grid grid-cols-4 border-t border-orange-500/10 py-3 text-center z-50 bg-[#0b0712]/95">
-      <button id="tab-btn-home" onclick="switchTab('panel-dashboard')" class="text-orange-500 flex flex-col items-center gap-1.5"><i class="fa-solid fa-house-chimney-window text-sm"></i><span class="text-[9px] uppercase font-black tracking-wider">Home</span></button>
-      <button id="tab-btn-history" onclick="switchTab('panel-history')" class="text-gray-400 flex flex-col items-center gap-1.5 hover:text-orange-500"><i class="fa-solid fa-clock-history text-sm"></i><span class="text-[9px] uppercase font-black tracking-wider">History</span></button>
-      <button id="tab-btn-support" onclick="switchTab('panel-support')" class="text-gray-400 flex flex-col items-center gap-1.5 hover:text-orange-500"><i class="fa-solid fa-headset text-sm"></i><span class="text-[9px] uppercase font-black tracking-wider">Support</span></button>
-      <button id="tab-btn-orders" onclick="switchTab('panel-orders')" class="text-gray-400 flex flex-col items-center gap-1.5 hover:text-orange-500"><i class="fa-solid fa-boxes-stacked text-sm"></i><span class="text-[9px] uppercase font-black tracking-wider">Orders</span></button>
-    </nav>
   </div>
 
-  <!-- CORE LOGIC FRAMEWORK ENGINE -->
-  <script>
-    let adminTimerClock;
-    let clickCounter = 0;
-    let walletStateBalance = 0;
-    let currentPendingUTRData = null;
-    let activePlanValue = 0;
-    let activePlanName = "";
-    let isUserBanned = false;
-    let currentUserIndex = 1;
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signInWithPopup, GoogleAuthProvider, signOut } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
 
-    window.addEventListener("load", () => {
-      const statusText = document.getElementById("loading-status");
-      setTimeout(() => { statusText.innerText = "VERIFYING SECURITY ENCRYPTION..."; }, 800);
-      setTimeout(() => { statusText.innerText = "AUTHENTICATING SERVER CHANNELS..."; }, 1600);
-      setTimeout(() => { 
-        document.getElementById("loading-screen").classList.add("hidden");
-        const appContainer = document.getElementById("app-main-content");
-        appContainer.classList.remove("opacity-0");
-        appContainer.classList.add("fade-in-up");
-      }, 2600);
+    // Firebase App Configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyCkPUAlsjzeMHcXC9TEPy0c0LWBe1Lkuk0",
+      authDomain: "zexi-tools.firebaseapp.com",
+      projectId: "zexi-tools",
+      storageBucket: "zexi-tools.firebasestorage.app",
+      messagingSenderId: "543167156257",
+      appId: "1:543167156257:web:22ff61f0b751d2c7b99360",
+      measurementId: "G-YTZS5YL6CV"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    let currentUser = null;
+
+    // Track User State Changes
+    onAuthStateChanged(auth, (user) => {
+      const emailDisplay = document.getElementById("user-display-email");
+      const authBtn = document.getElementById("auth-action-btn");
+
+      if (user) {
+        currentUser = user;
+        if (emailDisplay) emailDisplay.innerText = user.email;
+        if (authBtn) {
+          authBtn.innerHTML = `<i class="fa-solid fa-arrow-right-from-bracket"></i> Logout`;
+          authBtn.className = "bg-red-500/10 hover:bg-red-500/20 border border-red-500/30 text-red-400 px-3 py-1.5 rounded-xl font-bold text-[10px] uppercase flex items-center gap-1 transition-all";
+        }
+        console.log("Logged in user:", user.email);
+      } else {
+        currentUser = null;
+        if (emailDisplay) emailDisplay.innerText = "Please Log In First";
+        if (authBtn) {
+          authBtn.innerHTML = `<i class="fa-solid fa-right-to-bracket"></i> Login with Google`;
+          authBtn.className = "bg-orange-500 hover:bg-orange-600 border border-orange-400 text-black px-3 py-1.5 rounded-xl font-bold text-[10px] uppercase flex items-center gap-1 transition-all";
+        }
+        console.log("No user active.");
+      }
     });
 
-    function handleGuildUserRotation() {
-      const guildInput = document.getElementById("form-guild-id").value.trim();
-      if(guildInput.length >= 5) {
-        currentUserIndex = (parseInt(guildInput.slice(-2)) % 9) + 1;
-        if(isNaN(currentUserIndex)) currentUserIndex = 1;
+    // Unified Authentication Handler Function
+    window.handleGoogleAuth = function() {
+      if (currentUser) {
+        signOut(auth).then(() => {
+          console.log("Sign out successful.");
+        }).catch((error) => {
+          console.error("Sign out error:", error);
+        });
       } else {
-        currentUserIndex = 1;
+        const provider = new GoogleAuthProvider();
+        signInWithPopup(auth, provider)
+          .then((result) => {
+            console.log("Google Sign-In successful");
+          }).catch((error) => {
+            console.error("Error signing in:", error);
+          });
       }
-      const activeUserEmail = `user${currentUserIndex}@gmail.com`;
-      document.getElementById("user-display-email").innerText = activeUserEmail;
-      document.getElementById("admin-target-user-display").innerText = activeUserEmail;
-    }
+    };
+  </script>
 
-    function switchTab(targetTabId) {
-      if(isUserBanned) return;
-      const sections = ['panel-dashboard', 'panel-checkout', 'panel-timer-lock', 'panel-success', 'panel-history', 'panel-support', 'panel-orders'];
-      sections.forEach(id => document.getElementById(id).classList.add("hidden"));
-      document.getElementById(targetTabId).classList.remove("hidden");
+  <script>
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const loader = document.getElementById('loading-screen');
+        const mainContent = document.getElementById('app-main-content');
+        if (loader) loader.classList.add('hidden');
+        if (mainContent) mainContent.classList.remove('opacity-0');
+      }, 1500);
+    });
 
-      const tabs = ['home', 'history', 'support', 'orders'];
-      tabs.forEach(t => {
-        const btn = document.getElementById(`tab-btn-${t}`);
-        if(targetTabId.includes(t) || (targetTabId === 'panel-dashboard' && t === 'home')) {
-          btn.className = "text-orange-500 flex flex-col items-center gap-1.5";
-        } else {
-          btn.className = "text-gray-400 flex flex-col items-center gap-1.5 hover:text-orange-500";
+    function switchTab(tabId) {
+      const tabs = ['panel-dashboard', 'panel-checkout', 'panel-timer-lock', 'panel-success'];
+      tabs.forEach(id => {
+        const element = document.getElementById(id);
+        if (element) {
+          if (id === tabId) element.classList.remove('hidden');
+          else element.classList.add('hidden');
         }
       });
     }
 
-    // CHECKOUT PROCESS HOOK (TRIGGERS POPUP OR QR DISPLAY)
-    window.processToPaymentSummaryEngine = function() {
-      const targetGuild = document.getElementById("form-guild-id").value.trim();
-      const targetPlayer = document.getElementById("form-player-id").value.trim();
+    function processToPaymentSummaryEngine() {
+      const guildId = document.getElementById('form-guild-id').value.trim();
+      const playerId = document.getElementById('form-player-id').value.trim();
       
-      if(!targetGuild || targetGuild.length < 8 || targetGuild.length > 13) {
-        alert("🚨 Invalid Guild UID! Enter valid Free Fire Guild UID (8-13 digits).");
-        return;
-      }
-      if(!targetPlayer || targetPlayer.length < 8 || targetPlayer.length > 13) {
-        alert("🚨 Invalid Player UID! Enter valid Free Fire Player UID (8-13 digits).");
+      if(!guildId || !playerId) {
+        alert("Kripya Guild UID aur Player UID dono dalein!");
         return;
       }
 
-      const planDropdown = document.getElementById("form-plan-select");
-      activePlanValue = parseInt(planDropdown.value);
-      activePlanName = planDropdown.options[planDropdown.selectedIndex].text.split(" - ")[0].replace("⚡ ", "");
-
-      // If wallet has sufficient cash balance, show the customized System Launch configuration layout popup instantly
-      if (walletStateBalance >= activePlanValue) {
-        document.getElementById("system-launch-popup").classList.remove("hidden");
-      } else {
-        document.getElementById("summary-lbl-plan").innerText = activePlanName;
-        document.getElementById("summary-lbl-cost").innerText = "₹" + activePlanValue;
-        switchTab("panel-checkout");
-      }
-    };
-
-    // 4. ANIMATION FLOW STAGE INJECTION ENGINE
-    window.startVideoProcessingSequence = function() {
-      // Hide layout popup immediately
-      document.getElementById("system-launch-popup").classList.add("hidden");
+      const planSelector = document.getElementById('form-plan-select');
+      const selectedOption = planSelector.options[planSelector.selectedIndex];
       
-      const overlay = document.getElementById("video-processing-overlay");
-      const statusLbl = document.getElementById("video-processing-status");
-      
-      // Step A: Trigger Circle Spin 'Processing System...'
-      overlay.classList.remove("hidden");
-      statusLbl.innerText = "Processing System...";
-      
-      setTimeout(() => {
-        // Step B: Trigger 'Payment Successful'
-        statusLbl.innerText = "Payment Successful";
-        
-        setTimeout(() => {
-          // Step C: Trigger 'Starting Service...'
-          statusLbl.innerText = "Starting Service...";
-          
-          setTimeout(() => {
-            // Step D: Close Video Overlays & Launch Robot Active Dialog
-            overlay.classList.add("hidden");
-            document.getElementById("robot-active-popup").classList.remove("hidden");
-          }, 1500);
-        }, 1500);
-      }, 2000);
-    };
+      document.getElementById('summary-lbl-plan').innerText = selectedOption.text.split('-')[0].replace('⚡', '').trim();
+      document.getElementById('summary-lbl-cost').innerText = "₹" + selectedOption.value;
 
-    // FINALIZATION PROCESSOR FOR DASHBOARD OVERLAYS
-    window.finalizeAndShowCongratulationsDashboard = function() {
-      document.getElementById("robot-active-popup").classList.add("hidden");
-      
-      const targetGuild = document.getElementById("form-guild-id").value.trim();
-      const targetPlayer = document.getElementById("form-player-id").value.trim();
-      const planDropdown = document.getElementById("form-plan-select");
-      const activeOption = planDropdown.options[planDropdown.selectedIndex];
+      switchTab('panel-checkout');
+    }
 
-      // Deduct cash from wallet state storage architecture balance securely
-      walletStateBalance -= activePlanValue;
-      document.getElementById("header-wallet-balance").innerText = "₹" + walletStateBalance;
-      document.getElementById("admin-user-balance-lbl").innerText = "₹" + walletStateBalance;
-
-      // Assign parameter parameters to labels smoothly
-      document.getElementById("success-lbl-guild").innerText = targetGuild;
-      document.getElementById("success-lbl-player").innerText = targetPlayer;
-      document.getElementById("success-lbl-bots").innerText = activeOption.getAttribute("data-bots") + " BOTS ACTIVE";
-      document.getElementById("success-lbl-glory").innerText = activeOption.getAttribute("data-glory");
-
-      // Log into transaction dashboard logs lists mapping architecture
-      document.getElementById("history-list").innerHTML = `
-        <div class="p-3 bg-emerald-950/20 border border-emerald-500/20 rounded-xl flex justify-between items-center">
-          <div>
-            <p class="text-white font-bold">${activePlanName} (Glory Bot Engine)</p>
-            <p class="text-gray-400 text-[10px]">Guild: ${targetGuild} • Deployed Deployed</p>
-          </div>
-          <span class="text-red-400 font-bold">-₹${activePlanValue}</span>
-        </div>
-      `;
-
-      document.getElementById("orders-content").innerHTML = `
-        <div class="bg-black/40 border border-purple-500/10 p-4 rounded-xl flex justify-between items-center">
-          <div>
-            <p class="text-white font-bold">Auto Glory Bot Matrix</p>
-            <p class="text-purple-400 text-[10px]">Sync ID: ${targetGuild} (${activeOption.getAttribute("data-bots")} Bots)</p>
-          </div>
-          <span class="text-emerald-400 font-black animate-pulse text-[10px]">RUNNING</span>
-        </div>
-      `;
-
-      switchTab("panel-success");
-    };
-
-    window.submitUTRVerificationEngine = function() {
-      const utrCode = document.getElementById("payment-utr-input").value.trim();
-      if(utrCode.length < 10) {
-        alert("Invalid transaction reference UTR tracking number layout.");
+    function submitUTRVerificationEngine() {
+      const utrValue = document.getElementById('payment-utr-input').value.trim();
+      if(utrValue.length !== 12) {
+        alert("Kripya valid 12-Digit UTR/Transaction ID entered karein!");
         return;
       }
+      
+      switchTab('panel-timer-lock');
+      startAdminCountdownTimer(600);
+    }
 
-      const planDropdown = document.getElementById("form-plan-select");
-      const activeOption = planDropdown.options[planDropdown.selectedIndex];
+    function startAdminCountdownTimer(duration) {
+      let timer = duration, minutes, seconds;
+      const display = document.getElementById('admin-lock-countdown');
+      
+      const interval = setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
 
-      currentPendingUTRData = {
-        utr: utrCode,
-        guild: document.getElementById("form-guild-id").value.trim(),
-        player: document.getElementById("form-player-id").value.trim(),
-        amount: activePlanValue,
-        plan: activePlanName,
-        bots: activeOption.getAttribute("data-bots"),
-        glory: activeOption.getAttribute("data-glory")
-      };
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
 
-      renderAdminPanelPendingQueue();
-      switchTab("panel-timer-lock");
-      launchAdminApprovalCountdown(600);
-    };
+        if (display) display.textContent = minutes + ":" + seconds;
 
-    function launchAdminApprovalCountdown(secondsLeft) {
-      let duration = secondsLeft;
-      const timerLabel = document.getElementById("admin-lock-countdown");
-
-      clearInterval(adminTimerClock);
-      adminTimerClock = setInterval(() => {
-        let mins = Math.floor(duration / 60);
-        let secs = duration % 60;
-        timerLabel.innerText = `${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
-        
-        if (duration <= 0) {
-          clearInterval(adminTimerClock);
-          alert("Admin verification request sequence timeout.");
-          switchTab("panel-dashboard");
+        if (--timer < 0) {
+          clearInterval(interval);
+          document.getElementById('system-launch-popup').classList.remove('hidden');
         }
-        duration--;
       }, 1000);
     }
 
-    function handleSecretAdminClick() {
-      clickCounter++;
-      if(clickCounter === 3) {
-        clickCounter = 0;
-        const pass = prompt("ENTER SYSTEM CONTROL CENTRAL ADMINISTRATOR KEYCODE:");
-        if(pass === "ZEXI@2026") {
-          document.getElementById("secret-admin-modal").classList.remove("hidden");
+    function startVideoProcessingSequence() {
+      document.getElementById('system-launch-popup').classList.add('hidden');
+      const overlay = document.getElementById('video-processing-overlay');
+      const statusText = document.getElementById('video-processing-status');
+      
+      if(overlay) overlay.classList.remove('hidden');
+      
+      const stages = [
+        "Connecting to Game Server...",
+        "Injecting Bot Framework...",
+        "Syncing Guild Databases...",
+        "Finalizing Bot Launch Core..."
+      ];
+      
+      let step = 0;
+      const interval = setInterval(() => {
+        if(step < stages.length) {
+          if(statusText) statusText.innerText = stages[step];
+          step++;
+        } else {
+          clearInterval(interval);
+          if(overlay) overlay.classList.add('hidden');
+          const robotPopup = document.getElementById('robot-active-popup');
+          if(robotPopup) robotPopup.classList.remove('hidden');
         }
-      }
-      setTimeout(() => { clickCounter = 0; }, 2000);
+      }, 1500);
     }
 
-    function closeAdminPanelEngine() {
-      document.getElementById("secret-admin-modal").classList.add("hidden");
+    function finalizeAndShowCongratulationsDashboard() {
+      document.getElementById('robot-active-popup').classList.add('hidden');
+      
+      const planSelector = document.getElementById('form-plan-select');
+      const selectedOption = planSelector.options[planSelector.selectedIndex];
+      
+      document.getElementById('success-lbl-player').innerText = document.getElementById('form-player-id').value;
+      document.getElementById('success-lbl-guild').innerText = document.getElementById('form-guild-id').value;
+      document.getElementById('success-lbl-bots').innerText = selectedOption.getAttribute('data-bots');
+      document.getElementById('success-lbl-glory').innerText = selectedOption.getAttribute('data-glory');
+      
+      switchTab('panel-success');
     }
 
-    function renderAdminPanelPendingQueue() {
-      const container = document.getElementById("admin-pending-box");
-      if(!currentPendingUTRData) {
-        container.innerHTML = `<p class="text-gray-500 text-center py-2">No UTR requests in queue.</p>`;
-        return;
-      }
-      container.innerHTML = `
-        <div class="bg-black/60 p-3 border border-orange-500/20 rounded-lg space-y-2">
-          <p class="text-white"><span class="text-purple-400">UTR:</span> ${currentPendingUTRData.utr}</p>
-          <p class="text-gray-300 text-[11px]"><span class="text-purple-400">Plan:</span> ${currentPendingUTRData.plan} (₹${currentPendingUTRData.amount})</p>
-          <div class="flex gap-2 pt-1">
-            <button onclick="adminApproveRequestEngine()" class="flex-1 bg-emerald-500 text-black font-bold py-1 rounded text-[11px]">APPROVE</button>
-            <button onclick="adminRejectRequestEngine()" class="flex-1 bg-red-500 text-white font-bold py-1 rounded text-[11px]">REJECT</button>
-          </div>
-        </div>
-      `;
-    }
-
-    window.triggerInLineAddBalance = function() {
-      const inputAmt = prompt("ENTER AMOUNT TO INJECT INTO USER WALLET SYSTEM BALANCE (₹):");
-      const cashVal = parseInt(inputAmt);
-      
-      if(isNaN(cashVal) || cashVal <= 0) {
-        alert("Invalid cash wallet transaction injection numerical data.");
-        return;
-      }
-
-      walletStateBalance += cashVal;
-      document.getElementById("header-wallet-balance").innerText = "₹" + walletStateBalance;
-      document.getElementById("admin-user-balance-lbl").innerText = "₹" + walletStateBalance;
-
-      document.getElementById("history-list").innerHTML = `
-        <div class="p-3 bg-emerald-950/20 border border-emerald-500/20 rounded-xl flex justify-between items-center">
-          <div>
-            <p class="text-white font-bold">Admin Deposited Cash System Uplink</p>
-            <p class="text-gray-400 text-[10px]">Session Key Context: user${currentUserIndex}@gmail.com</p>
-          </div>
-          <span class="text-emerald-400 font-bold">+₹${cashVal}</span>
-        </div>
-      `;
-      alert(`Injected cash amount: ₹${cashVal} credited to user${currentUserIndex}@gmail.com profile instance.`);
-    };
-
-    window.adminApproveRequestEngine = function() {
-      if(!currentPendingUTRData) return;
-      clearInterval(adminTimerClock);
-      closeAdminPanelEngine();
-
-      // Trigger the standard video processing sequence for uniform user experience flow mapping
-      const overlay = document.getElementById("video-processing-overlay");
-      const statusLbl = document.getElementById("video-processing-status");
-      
-      overlay.classList.remove("hidden");
-      statusLbl.innerText = "Processing System...";
-      
-      setTimeout(() => {
-        statusLbl.innerText = "Payment Successful";
-        
-        setTimeout(() => {
-          statusLbl.innerText = "Starting Service...";
-          
-          setTimeout(() => {
-            overlay.classList.add("hidden");
-            
-            // Push data parameters into congratulations elements frame blocks smoothly
-            walletStateBalance += currentPendingUTRData.amount;
-            document.getElementById("header-wallet-balance").innerText = "₹" + walletStateBalance;
-            document.getElementById("admin-user-balance-lbl").innerText = "₹" + walletStateBalance;
-
-            document.getElementById("success-lbl-guild").innerText = currentPendingUTRData.guild;
-            document.getElementById("success-lbl-player").innerText = currentPendingUTRData.player;
-            document.getElementById("success-lbl-bots").innerText = currentPendingUTRData.bots + " BOTS ACTIVE";
-            document.getElementById("success-lbl-glory").innerText = currentPendingUTRData.glory;
-            
-            document.getElementById("history-list").innerHTML = `
-              <div class="p-3 bg-emerald-950/20 border border-emerald-500/20 rounded-xl flex justify-between items-center">
-                <div>
-                  <p class="text-white font-bold">${currentPendingUTRData.plan}</p>
-                  <p class="text-gray-400 text-[10px]">UTR Ref: ${currentPendingUTRData.utr} • Guild: ${currentPendingUTRData.guild}</p>
-                </div>
-                <span class="text-emerald-400 font-bold">+₹${currentPendingUTRData.amount}</span>
-              </div>
-            `;
-
-            document.getElementById("orders-content").innerHTML = `
-              <div class="bg-black/40 border border-purple-500/10 p-4 rounded-xl flex justify-between items-center">
-                <div>
-                  <p class="text-white font-bold">Auto Glory Bot Matrix</p>
-                  <p class="text-purple-400 text-[10px]">Sync ID: ${currentPendingUTRData.guild} (${currentPendingUTRData.bots})</p>
-                </div>
-                <span class="text-emerald-400 font-black animate-pulse text-[10px]">RUNNING</span>
-              </div>
-            `;
-
-            document.getElementById("robot-active-popup").classList.remove("hidden");
-            currentPendingUTRData = null;
-            renderAdminPanelPendingQueue();
-          }, 1500);
-        }, 1500);
-      }, 2000);
-    };
-
-    window.adminRejectRequestEngine = function() {
-      if(!currentPendingUTRData) return;
-      clearInterval(adminTimerClock);
-      currentPendingUTRData = null;
-      renderAdminPanelPendingQueue();
-      closeAdminPanelEngine();
-      alert("UTR reference number layout has been rejected by terminal administrator protocols.");
-      switchTab("panel-dashboard");
-    };
-
-    window.toggleBanUserEngine = function() {
-      isUserBanned = !isUserBanned;
-      if(isUserBanned) {
-        alert("Session Terminal Account Connection Severed.");
-        closeAdminPanelEngine();
-        document.body.innerHTML = `<div class='min-h-screen flex items-center justify-center text-red-500 font-mono font-black uppercase tracking-widest bg-black px-6 text-center text-sm'>CRITICAL SESSION ERROR: INTERNET CONNECT MATRIX DISCONNECTED BY CENTRAL HUB ADMINISTRATOR.</div>`;
-      }
-    };
-
-    window.deleteAccountEngine = function() {
-      if(confirm("Hard clear current interface instance layout state data logs?")) { location.reload(); }
-    };
+    function handleGuildUserRotation() {}
+    function handleSecretAdminClick() {}
   </script>
 </body>
 </html>
